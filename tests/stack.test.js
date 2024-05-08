@@ -24,5 +24,5 @@ test('Look at the left childs value given a certain index of the heap', () => {
     stack.push(12);
     stack.push(16);
     expect(stack.leftChild(1)).toBeDefined();
-    expect(stack.rightChild(1)).toBe(16);
+    expect(stack.leftChild(1)).toBe(16);
 });

@@ -6,7 +6,8 @@ window.onload = function () {
     var push = document.getElementById('push');
     var peek = document.getElementById('peek');
     var display = document.getElementById('top_of_stack');
-    const left = document.getElementById('top_of_stack');
+    const left = document.getElementById('leftChild');
+    const right = document.getElementById('rightChild');
 
     pop.addEventListener("click", function() {
         var text = "Tog bort " + stack.pop();
@@ -21,5 +22,13 @@ window.onload = function () {
 
     peek.addEventListener("click", function() {
         display.innerHTML = stack.peek();
+    });
+
+    left.addEventListener("click", () => {
+        alert("Left childs value is "+ stack.leftChild(prompt("What index to check left child value?")));
+    });
+
+    right.addEventListener("click", () => {
+        alert("Right childs value is "+ stack.rightChild(prompt("What index to check right child value?")));
     });
 };

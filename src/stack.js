@@ -14,7 +14,7 @@ exports.push = function (x) {
 exports.pop = function () {
     const firstValue = stack[0];
     if (stack.length > 1) {
-        stack[0] = stack.pop();
+        stack[0] = stack.pop(); // remvoes the last value and instead moves it to the first index
         bubbleDown();
     }else{
         stack.pop();
@@ -35,7 +35,10 @@ exports.leftChild = (index) => {
 exports.rightChild = (index) => {
     return stack[index * 2 + 2];
 }
-
+// when instering the last value is checked with its parent if parent is bigger switch place: 
+// then set index to the parents index since we jsut switched em 
+// After the index is set check the next parent value 
+// It does this untill the index is === 0 which means we have checked all values
 bubbleUp = () => {
     const lastValue = stack[stack.length - 1];
     let index = stack.length - 1
@@ -49,15 +52,22 @@ bubbleUp = () => {
     }
 
 }
-
+/* 
+    start index is set to 0 since it will be the number that was overwritten
+    after this it we also sets the child index to 0
+    The first thing that happens in the loop is that we presume that the left child is smaller than the right child
+    Then we actually controll this by comapring the lft and right childs value if left is smaller nothing ahppens.
+    But of the right childs value is samller than the left one we set child index to the right childs index
+    efter this we comapre that if the current index value is smaller than the child then we know that the value is put correctly
+    if not the the current index value is wwtiched with the childs value
+    after this the index we looking at is swtiched to the childs index so that we can continue to move it to the corect position
+*/
 bubbleDown = () => {
     let index = 0;
-    let minimum = this.leftChild(index);
     let childIndex = 0;
     while (this.leftChild(index)) {
         childIndex = index * 2 + 1;
         if (this.leftChild(index) > this.rightChild(index)) {
-            minimum = this.rightChild(index);
             childIndex = index * 2 + 2;
         }
 

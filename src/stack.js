@@ -13,8 +13,12 @@ exports.push = function (x) {
 // Returnerar det översta elementet i heapen och tar bort det
 exports.pop = function () {
     const firstValue = stack[0];
-    stack[0] = stack.pop();
-    bubbleDown();
+    if (stack.length > 1) {
+        stack[0] = stack.pop();
+        bubbleDown();
+    }else{
+        stack.pop();
+    } 
     console.log(stack);
     return firstValue;
 }

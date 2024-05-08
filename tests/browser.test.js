@@ -23,6 +23,7 @@ test('The stack should be empty in the beginning', async () => {
 	expect(stack).toEqual("n/a");
 });
 
+//controll so the title is correctly set
 it('Should show the title', async () => {
     let title = await driver.getTitle();
     expect(title).toEqual("En stack");
@@ -38,8 +39,9 @@ describe('Clicking "Pusha till stacken"', () => {
 		await alert.accept();
 	});
 
+    //Basically controll so the bubble up method works correectly asswell as the pop method
     it('should remove the minimu value of the heap in this case 2', async () => {
-        await driver.findElement(By.id('pop')).click(); // Nollställ heapen
+        await driver.findElement(By.id('pop')).click(); // clear heap from previous test
         let alert = await driver.switchTo().alert();
 		await alert.accept();
 
@@ -57,7 +59,8 @@ describe('Clicking "Pusha till stacken"', () => {
 		alert = await driver.switchTo().alert();
 		await alert.sendKeys("3");
 		await alert.accept(); 
-
-        expect(await driver.findElement(By.id('pop')).click().getText()).toEqual("Tog bort 2");
+        
+        await driver.findElement(By.id('pop')).click();
+        expect(await driver.switchTo().alert().getText()).toEqual("Tog bort 2");
 	});
 });
